@@ -97,9 +97,9 @@
         /* find all active products */
         const allActiveProducts = document.querySelectorAll('.product.active');
         /* START LOOP: for each active product */
-        for (let activeProduct of allActiveProducts){
+        for (let activeProduct of allActiveProducts) {
           /* START: if the active product isn't the element of thisProduct */
-          if (thisProduct.element != activeProduct){
+          if (thisProduct.element != activeProduct) {
             /* remove class active for the active product */
             activeProduct.classList.remove('active');
           /* END: if the active product isn't the element of thisProduct */
@@ -173,7 +173,7 @@
       thisApp.data = dataSource;
     },
 
-    init: function(){
+    init: function() {
       const thisApp = this;
       console.log('*** App starting ***');
       console.log('thisApp:', thisApp);
