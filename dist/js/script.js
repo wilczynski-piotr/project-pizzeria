@@ -147,16 +147,13 @@
           const imageWrapperItems = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
           console.log('imageWrapperItems', imageWrapperItems);
 
-          if (optionSelected){
-            for(let imageWrapperItem in imageWrapperItems){
-              imageWrapperItem.classList.add('active');
-            }}
-            else {
-              for(let imageWrapperItem in imageWrapperItems){
-                imageWrapperItem.classList.remove('active');
-              }}
+          if (optionSelected && imageWrapperItems){
+              imageWrapperItems.classList.add('active');
+          } else if (imageWrapperItems){
+            imageWrapperItems.classList.remove('active');
           }
         }
+      }
       thisProduct.priceElem.innerHTML = price;
     }
   }
