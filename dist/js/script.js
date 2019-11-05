@@ -289,8 +289,6 @@
       thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
       thisCart.getElements(element);
       thisCart.initActions();
-
-      //console.log('new Cart', thisCart);
     }
 
     getElements(element) {
@@ -389,7 +387,7 @@
 
       for(let key of thisCart.renderTotalsKeys) {
         for(let elem of thisCart.dom[key]) {
-          elem.inerHTML = thisCart[key];
+          elem.innerHTML = thisCart[key];
         }
       }
     }
