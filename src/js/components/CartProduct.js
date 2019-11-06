@@ -15,7 +15,6 @@ class CartProduct {
     thisCartProduct.getElements(element);
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
-    //console.log('thisCartProduct', thisCartProduct);
   }
 
   getElements(element) {
@@ -28,7 +27,6 @@ class CartProduct {
     thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
     thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
     thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
-    ////console.log(thisCartProduct.dom.amountWidget);
   }
 
   initAmountWidget() {
@@ -49,13 +47,12 @@ class CartProduct {
     const event = new CustomEvent('remove', {
       bubbles: true,
       detail: {
-        cartProduct: thisCartProduct,
-      },
+        cartProduct: thisCartProduct
+      }
     });
 
     thisCartProduct.dom.wrapper.dispatchEvent(event);
 
-    //console.log('remove', thisCartProduct.remove);
   }
 
   initActions() {
@@ -79,7 +76,7 @@ class CartProduct {
         amount: thisCartProduct.amount,
         price: thisCartProduct.price,
         priceSingle: thisCartProduct.priceSingle,
-        params: thisCartProduct.params,
+        params: thisCartProduct.params
       }
     };
     return productAddedData;

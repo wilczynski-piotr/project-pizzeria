@@ -49,7 +49,7 @@ class Product {
       /* find all active products */
       const allActiveProducts = document.querySelectorAll('.product.active');
       /* START LOOP: for each active product */
-      for (let activeProduct of allActiveProducts) {
+      for( let activeProduct of allActiveProducts ) {
         /* START: if the active product isn't the element of thisProduct */
         if (thisProduct.element != activeProduct) {
           /* remove class active for the active product */
@@ -70,7 +70,7 @@ class Product {
       thisProduct.processOrder();
     });
 
-    for(let input of thisProduct.formInputs) {
+    for( let input of thisProduct.formInputs ) {
       input.addEventListener('change', function() {
         thisProduct.processOrder();
       });
@@ -88,9 +88,9 @@ class Product {
     const formData = utils.serializeFormToObject(thisProduct.form);
     thisProduct.params = {};
     let price = thisProduct.data.price;
-    for (let paramId in thisProduct.data.params) {
+    for ( let paramId in thisProduct.data.params ) {
       const param = thisProduct.data.params[paramId];
-      for (let optionId in param.options) {
+      for ( let optionId in param.options ) {
         const option = param.options[optionId];
         const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
         if (optionSelected && !option.default) {
@@ -107,7 +107,7 @@ class Product {
           if (!thisProduct.params[paramId]) {
             thisProduct.params[paramId] = {
               label: param.label,
-              options: {},
+              options: {}
             };
           }
           thisProduct.params[paramId].options[optionId] = option.label;
@@ -129,7 +129,6 @@ class Product {
     const thisProduct = this;
 
     thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
-    //console.log(thisProduct.amountWidgetElem);
     thisProduct.amountWidgetElem.addEventListener('updated', function () {
       thisProduct.processOrder();
     });
@@ -146,8 +145,8 @@ class Product {
     const event = new CustomEvent('add-to-cart', {
       bubbles: true,
       detail: {
-        product: thisProduct,
-      },
+        product: thisProduct
+      }
     });
 
     thisProduct.element.dispatchEvent(event);
