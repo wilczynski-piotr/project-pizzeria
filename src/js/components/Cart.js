@@ -24,7 +24,7 @@ class Cart {
     thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
 
     thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
-    for( let key of thisCart.renderTotalsKeys ){
+    for (let key of thisCart.renderTotalsKeys){
       thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
     }
   }
@@ -60,7 +60,7 @@ class Cart {
       products: []
     };
 
-    for( let product of thisCart.products ) {
+    for (let product of thisCart.products) {
       payload.products.push(product.getData());
     }
 
@@ -97,7 +97,7 @@ class Cart {
     thisCart.totalNumber = 0;
     thisCart.subtotalPrice = 0;
 
-    for( let product of thisCart.products ) {
+    for (let product of thisCart.products) {
       thisCart.subtotalPrice += product.price;
       thisCart.totalNumber += product.amount;
     }
@@ -106,8 +106,8 @@ class Cart {
     console.log('subtotalPrice', thisCart.subtotalPrice);
     console.log('thisCart.totalPrice', thisCart.totalPrice);
 
-    for( let key of thisCart.renderTotalsKeys ) {
-      for( let elem of thisCart.dom[key] ) {
+    for (let key of thisCart.renderTotalsKeys) {
+      for (let elem of thisCart.dom[key]) {
         elem.innerHTML = thisCart[key];
       }
     }
