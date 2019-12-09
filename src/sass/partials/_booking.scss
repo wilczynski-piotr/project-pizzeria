@@ -66,7 +66,7 @@
   &__handle {
     box-shadow: none;
     border: 0;
-    transition-timing-function: cubic-bezier(0, 1, 0, 1);
+    //transition-timing-function: cubic-bezier(0, 1, 0, 1);
     transition: transform 100ms;
 
     &::after {
@@ -83,10 +83,7 @@
   }
 
   &__fill {
-    background: $color-success;
-    transition-timing-function: cubic-bezier(0, 1, 0, 1);
-    transition: width 100ms;
-    box-shadow: none;
+    display: none;
   }
 }
 

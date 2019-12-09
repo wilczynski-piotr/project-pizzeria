@@ -38,6 +38,8 @@ class Booking {
     thisBooking.selectedTable = [];
     thisBooking.starters = [];
     thisBooking.dom.wrapper.addEventListener('updated', function(){
+      thisBooking.colorSlider();
+
       thisBooking.updateDOM();
     });
 
@@ -117,7 +119,6 @@ class Booking {
     const minDate = thisBooking.datePicker.minDate;
     const maxDate = thisBooking.datePicker.maxDate;
 
-
     for (let item of eventsRepeat) {
       if (item.repeat == 'daily') {
         for (let loopDate = minDate; loopDate <= maxDate; loopDate = utils.addDays(loopDate, 1)){
@@ -125,8 +126,8 @@ class Booking {
         }
       }
     }
-
     thisBooking.updateDOM();
+    thisBooking.colorSlider();
   }
 
   makeBooked(date, hour, duration, table) {
@@ -141,6 +142,7 @@ class Booking {
     for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5){
 
       if (typeof thisBooking.booked[date][hourBlock] == 'undefined'){
+
         thisBooking.booked[date][hourBlock] = [];
       }
 
@@ -219,7 +221,6 @@ class Booking {
     hourPicker.addEventListener('change', function() {
       thisBooking.selectedTable.length = 0;
     });
-
   }
 
   sendBooking() {
@@ -252,12 +253,34 @@ class Booking {
       });
     payload.table.forEach(element => {
       thisBooking.makeBooked(payload.date, payload.hour, payload.duration, element);
-
     });
     thisBooking.updateDOM();
+  }
 
+  colorSlider() {
+    const thisBooking = this;
+    const bookedHours = thisBooking.booked[thisBooking.datePicker.correctValue];
+    const sliderElem = document.querySelector('.rangeSlider');
+    let newStyle = [];
 
+    for (let bookedHour in bookedHours) {
+      const bookingPrecentageStart = ((bookedHour - 12)*100)/12;
+      const bookingPrecentageEnd = bookingPrecentageStart + ((0.5 * 100)/12);
+      if (bookedHour < 24 ) {
+        if (bookedHours[bookedHour].length === 3  ) {
+          newStyle.push('/*' + bookedHour + '*/red ' + bookingPrecentageStart + '%, red ' + bookingPrecentageEnd + '%');
+        } else if (bookedHours[bookedHour].length === 2) {
+          newStyle.push('/*' + bookedHour + '*/orange ' + bookingPrecentageStart + '%, orange ' + bookingPrecentageEnd + '%');
+        } else {
+          newStyle.push('/*' + bookedHour + '*/green ' + bookingPrecentageStart + '%, green ' + bookingPrecentageEnd + '%');
+        }
+      }
+    }
 
+    newStyle.sort();
+    let newStyleCssString = newStyle.join();
+    let newStyleCssStringSum = 'linear-gradient(to right, ' + newStyleCssString + ')';
+    sliderElem.style.background = newStyleCssStringSum;
   }
 }
 

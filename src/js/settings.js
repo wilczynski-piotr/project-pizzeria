@@ -67,7 +67,7 @@ export const select = {
     selected: '.selected',
   },
   nav: {
-    links: '.main-nav a'
+    links: '.main-nav a, .half a'
   }
 };
 
